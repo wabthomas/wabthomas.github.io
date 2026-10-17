@@ -234,7 +234,7 @@ export const PROJECTS = [
     slug: "adiong",
     emoji: "♿",
     cover: 1,
-    image: "/projects/adiong.jpg",
+    image: "/projects/adiong-og.jpg",
     title: "ADI ONG",
     status: "live",
     tags: ["Impact", "Web", "Accessibilité"],
