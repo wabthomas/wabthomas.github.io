@@ -123,7 +123,7 @@ button {
 }
 
 .nav.is-scrolled {
-  background: rgba(11, 11, 20, 0.72);
+  background: rgba(13, 11, 10, 0.82);
   backdrop-filter: blur(18px) saturate(1.4);
   -webkit-backdrop-filter: blur(18px) saturate(1.4);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
@@ -592,7 +592,7 @@ button {
   border-radius: 999px;
   background: rgba(255, 106, 0, 0.12);
   border: 1px solid rgba(255, 106, 0, 0.3);
-  color: #b3aaff;
+  color: #ffb46a;
   font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -703,7 +703,7 @@ button {
   height: 44px;
   border-radius: 12px;
   background: rgba(255, 106, 0, 0.14);
-  color: #a99fff;
+  color: #ffb46a;
   margin-bottom: 16px;
 }
 
@@ -852,7 +852,7 @@ button {
   gap: 6px;
   font-size: 0.92rem;
   font-weight: 600;
-  color: #9db4ff;
+  color: #ffb46a;
   transition: color 0.25s, gap 0.25s;
 }
 
@@ -1039,7 +1039,7 @@ a.channel:hover {
   flex-shrink: 0;
   border-radius: 13px;
   background: rgba(255, 106, 0, 0.14);
-  color: #a99fff;
+  color: #ffb46a;
 }
 
 .channel strong {
