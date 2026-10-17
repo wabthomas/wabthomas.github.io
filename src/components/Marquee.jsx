@@ -1,20 +1,10 @@
 import { Fragment } from "react";
-
-const ITEMS = [
-  "Développement Web",
-  "Marketing Digital",
-  "Création de Contenu",
-  "Blogging",
-  "Accessibilité",
-  "SEO",
-  "TypeScript",
-  "Innovation en RDC",
-];
+import { TECH_STACK } from "../data/profile";
 
 function Group() {
   return (
     <div className="marquee__group">
-      {ITEMS.map((item) => (
+      {TECH_STACK.map((item) => (
         <Fragment key={item}>
           <span>{item}</span>
           <i>✦</i>

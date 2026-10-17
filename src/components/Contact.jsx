@@ -2,7 +2,7 @@ import { useState } from "react";
 import { CONTACT_EMAIL } from "../i18n/translations";
 import { useLanguage } from "../context/LanguageContext";
 import Reveal from "./Reveal";
-import { IconBlog, IconGithub, IconPin, IconSend, IconX } from "./Icons";
+import { IconBlog, IconGithub, IconLinkedIn, IconPin, IconSend, IconX } from "./Icons";
 
 export default function Contact({ showToast }) {
   const { t } = useLanguage();
@@ -67,6 +67,20 @@ export default function Contact({ showToast }) {
         <div className="contact__grid">
           <Reveal className="contact__info">
             <div className="contact__channels">
+              <a href="mailto:thomaszawadi@gmail.com" className="channel">
+                <div className="channel__icon" aria-hidden="true"><IconSend size={18} /></div>
+                <div>
+                  <strong>Email</strong>
+                  <span>thomaszawadi@gmail.com</span>
+                </div>
+              </a>
+              <a href="https://linkedin.com/in/wabthomas" target="_blank" rel="noopener noreferrer" className="channel">
+                <div className="channel__icon" aria-hidden="true"><IconLinkedIn /></div>
+                <div>
+                  <strong>LinkedIn</strong>
+                  <span>@wabthomas</span>
+                </div>
+              </a>
               <a href="https://github.com/wabthomas" target="_blank" rel="noopener noreferrer" className="channel">
                 <div className="channel__icon" aria-hidden="true"><IconGithub /></div>
                 <div>

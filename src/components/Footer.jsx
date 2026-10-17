@@ -9,7 +9,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="container footer__inner">
         <a href="#accueil" className="nav__logo">
-          <span className="nav__logo-badge">WT</span>
+          <img src="/portrait.png" alt="" className="nav__avatar" width="36" height="36" />
           <span className="nav__logo-name">
             Thomas<span className="accent">.</span>
           </span>

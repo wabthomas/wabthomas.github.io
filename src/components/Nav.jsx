@@ -4,9 +4,10 @@ import { useLanguage } from "../context/LanguageContext";
 const LINKS = [
   { href: "#accueil", key: "nav.home" },
   { href: "#apropos", key: "nav.about" },
+  { href: "#competences", key: "nav.skills" },
   { href: "#projets", key: "nav.projects" },
+  { href: "#parcours", key: "nav.experience" },
   { href: "#services", key: "nav.services" },
-  { href: "#blog", key: "nav.blog" },
   { href: "#contact", key: "nav.contact", cta: true },
 ];
 
@@ -40,7 +41,7 @@ export default function Nav({ scrolled, activeId }) {
       <header className={`nav${scrolled ? " is-scrolled" : ""}`} id="nav">
         <div className="container nav__inner">
           <a href="#accueil" className="nav__logo" aria-label="Thomas Zawadi — accueil" onClick={closeMenu}>
-            <span className="nav__logo-badge">WT</span>
+            <img src="/portrait.png" alt="" className="nav__avatar" width="36" height="36" />
             <span className="nav__logo-name">
               Thomas<span className="accent">.</span>
             </span>
