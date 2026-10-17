@@ -1,9 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
 import { HashRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { LanguageProvider } from "./context/LanguageContext";
+import { ThemeProvider } from "./context/ThemeContext";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import TechDetail from "./components/TechDetail";
+import ProjectDetail from "./components/ProjectDetail";
 import Home from "./pages/Home";
 import { IconUp } from "./components/Icons";
 
@@ -15,7 +17,7 @@ function ScrollManager({ showBackTop, setShowBackTop, setScrolled, setProgress, 
       const id = location.hash.replace("#", "");
       const el = document.getElementById(id);
       if (el) setTimeout(() => el.scrollIntoView({ behavior: "smooth" }), 50);
-    } else if (location.pathname.startsWith("/tech/")) {
+    } else if (location.pathname.startsWith("/tech/") || location.pathname.startsWith("/project/")) {
       window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
     }
   }, [location]);
@@ -50,7 +52,8 @@ function Shell() {
   const [activeId, setActiveId] = useState("accueil");
   const [toast, setToast] = useState({ visible: false, message: "" });
   const location = useLocation();
-  const isTechPage = location.pathname.startsWith("/tech/");
+  const isDetailPage =
+    location.pathname.startsWith("/tech/") || location.pathname.startsWith("/project/");
 
   const showToast = useCallback((message) => {
     setToast({ visible: true, message });
@@ -72,12 +75,13 @@ function Shell() {
         <span id="scrollBar" style={{ width: `${progress}%` }} />
       </div>
 
-      <Nav scrolled={scrolled} activeId={isTechPage ? "" : activeId} />
+      <Nav scrolled={scrolled} activeId={isDetailPage ? "" : activeId} />
 
       <main>
         <Routes>
           <Route path="/" element={<Home showToast={showToast} />} />
           <Route path="/tech/:slug" element={<TechDetail />} />
+          <Route path="/project/:slug" element={<ProjectDetail />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
@@ -106,10 +110,12 @@ function Shell() {
 
 export default function App() {
   return (
-    <LanguageProvider>
-      <HashRouter>
-        <Shell />
-      </HashRouter>
-    </LanguageProvider>
+    <ThemeProvider>
+      <LanguageProvider>
+        <HashRouter>
+          <Shell />
+        </HashRouter>
+      </LanguageProvider>
+    </ThemeProvider>
   );
 }

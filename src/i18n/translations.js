@@ -79,6 +79,7 @@ export const translations = {
       "Plateforme logistique KivuColis : envoi et suivi de colis / transferts en Afrique de l’Est — suivi, points relais et opérations terrain.",
     "projects.visit": "Visiter",
     "projects.code": "Code source",
+    "projects.details": "Voir les détails",
 
     "exp.eyebrow": "Parcours",
     "exp.title": "Expérience professionnelle",
@@ -167,10 +168,13 @@ export const translations = {
     "contact.subjectPh": "De quoi souhaitez-vous parler ?",
     "contact.messagePh": "Votre message...",
     "contact.send": "Envoyer le message",
+    "contact.sending": "Envoi en cours…",
     "contact.note":
-      "Le message est copié — envoyez-le via e-mail, LinkedIn ou GitHub.",
+      "Le message m’est envoyé directement par e-mail. Vous pouvez aussi me joindre via les canaux ci-contre.",
     "contact.toastOk": "Message copié ! Envoyez-le-moi via e-mail ou LinkedIn.",
+    "contact.toastSent": "Message envoyé — je vous réponds rapidement.",
     "contact.toastErr": "Merci de remplir tous les champs obligatoires.",
+    "contact.cv": "Télécharger mon CV (PDF)",
 
     "footer.made": "Fait avec",
     "footer.in": "à Goma",
@@ -255,6 +259,7 @@ export const translations = {
       "KivuColis logistics platform: parcel shipping and tracking across East Africa — tracking, pickup points and field operations.",
     "projects.visit": "Visit",
     "projects.code": "Source code",
+    "projects.details": "View details",
 
     "exp.eyebrow": "Experience",
     "exp.title": "Professional background",
@@ -343,10 +348,13 @@ export const translations = {
     "contact.subjectPh": "What would you like to talk about?",
     "contact.messagePh": "Your message...",
     "contact.send": "Send the message",
+    "contact.sending": "Sending…",
     "contact.note":
-      "The message is copied — send it via email, LinkedIn or GitHub.",
+      "Your message is sent to me by email. You can also reach me via the channels on the left.",
     "contact.toastOk": "Message copied! Send it via email or LinkedIn.",
+    "contact.toastSent": "Message sent — I'll get back to you soon.",
     "contact.toastErr": "Please fill in all required fields.",
+    "contact.cv": "Download my CV (PDF)",
 
     "footer.made": "Made with",
     "footer.in": "in Goma",

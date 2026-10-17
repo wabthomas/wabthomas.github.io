@@ -1,14 +1,16 @@
 import { useState } from "react";
-import { CONTACT_EMAIL } from "../i18n/translations";
 import { CONTACT } from "../data/profile";
 import { useLanguage } from "../context/LanguageContext";
 import Reveal from "./Reveal";
 import { IconBlog, IconFacebook, IconGithub, IconLinkedIn, IconPin, IconSend, IconX } from "./Icons";
 
+const FORMSUBMIT = `https://formsubmit.co/ajax/${CONTACT.email}`;
+
 export default function Contact({ showToast }) {
-  const { t } = useLanguage();
+  const { lang, t } = useLanguage();
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [invalid, setInvalid] = useState({});
+  const [sending, setSending] = useState(false);
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -31,29 +33,47 @@ export default function Contact({ showToast }) {
       return;
     }
 
-    const composed =
-      (form.subject.trim() ? `${form.subject.trim()}\n\n` : "") +
-      form.message.trim() +
-      `\n\n— ${form.name.trim()} (${form.email.trim()})`;
-
+    setSending(true);
     try {
-      await navigator.clipboard.writeText(composed);
-    } catch {
-      /* clipboard unavailable */
-    }
+      const res = await fetch(FORMSUBMIT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: form.name.trim(),
+          email: form.email.trim(),
+          subject: form.subject.trim() || `Portfolio — ${form.name.trim()}`,
+          message: form.message.trim(),
+          _template: "table",
+          _captcha: "false",
+        }),
+      });
 
-    if (CONTACT_EMAIL) {
+      if (!res.ok) throw new Error("send failed");
+      showToast(t("contact.toastSent"));
+      setForm({ name: "", email: "", subject: "", message: "" });
+      setInvalid({});
+    } catch {
+      // Fallback: mailto
+      const composed =
+        (form.subject.trim() ? `${form.subject.trim()}\n\n` : "") +
+        form.message.trim() +
+        `\n\n— ${form.name.trim()} (${form.email.trim()})`;
       const mailSubject = encodeURIComponent(
         form.subject.trim() || `Portfolio — ${form.name.trim()}`
       );
       const mailBody = encodeURIComponent(composed);
-      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${mailSubject}&body=${mailBody}`;
-    } else {
-      showToast(t("contact.toastOk"));
+      window.location.href = `mailto:${CONTACT.email}?subject=${mailSubject}&body=${mailBody}`;
+      showToast(
+        lang === "fr"
+          ? "Envoi direct indisponible — ouverture de votre messagerie."
+          : "Direct send unavailable — opening your mail app."
+      );
+    } finally {
+      setSending(false);
     }
-
-    setForm({ name: "", email: "", subject: "", message: "" });
-    setInvalid({});
   };
 
   const channels = [
@@ -101,15 +121,13 @@ export default function Contact({ showToast }) {
                   <span>Goma, RDC</span>
                 </div>
               </div>
+              <a href="/cv-thomas-zawadi.pdf" className="btn btn--ghost btn--full" download>
+                {t("contact.cv")}
+              </a>
             </div>
           </Reveal>
 
-          <Reveal
-            as="form"
-            className="contact__form"
-            noValidate
-            onSubmit={onSubmit}
-          >
+          <Reveal as="form" className="contact__form" noValidate onSubmit={onSubmit}>
             <div className="form-row">
               <label className="form-field">
                 <span>{t("contact.name")}</span>
@@ -158,8 +176,8 @@ export default function Contact({ showToast }) {
                 className={invalid.message ? "is-invalid" : ""}
               />
             </label>
-            <button type="submit" className="btn btn--primary btn--full">
-              <span>{t("contact.send")}</span>
+            <button type="submit" className="btn btn--primary btn--full" disabled={sending}>
+              <span>{sending ? t("contact.sending") : t("contact.send")}</span>
               <IconSend />
             </button>
             <p className="form-note">{t("contact.note")}</p>

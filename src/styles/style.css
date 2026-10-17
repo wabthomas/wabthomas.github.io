@@ -3,7 +3,8 @@
    Design : moderne & tech, fond sombre, accents orange
    ============================================================ */
 
-:root {
+:root,
+[data-theme="dark"] {
   --bg: #0d0b0a;
   --bg-soft: #161210;
   --bg-card: rgba(255, 255, 255, 0.04);
@@ -18,6 +19,7 @@
   --accent-glow: rgba(255, 106, 0, 0.4);
   --accent-soft: rgba(255, 106, 0, 0.14);
   --accent-grad: linear-gradient(135deg, #ff9f1a 0%, #ff5a00 100%);
+  --nav-bg: rgba(13, 11, 10, 0.82);
   --radius: 20px;
   --radius-sm: 12px;
   --shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
@@ -25,6 +27,25 @@
   --font-body: "Inter", system-ui, -apple-system, sans-serif;
   --nav-h: 72px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-theme="light"] {
+  --bg: #f7f3ee;
+  --bg-soft: #efe8df;
+  --bg-card: rgba(255, 255, 255, 0.72);
+  --bg-card-hover: rgba(255, 255, 255, 0.95);
+  --border: rgba(40, 28, 16, 0.1);
+  --border-strong: rgba(40, 28, 16, 0.16);
+  --text: #1c1510;
+  --text-muted: #5c4f44;
+  --text-faint: #8a7a6c;
+  --accent-1: #e86a00;
+  --accent-2: #ff8a1f;
+  --accent-glow: rgba(232, 106, 0, 0.28);
+  --accent-soft: rgba(232, 106, 0, 0.12);
+  --accent-grad: linear-gradient(135deg, #ff9f1a 0%, #e86a00 100%);
+  --nav-bg: rgba(247, 243, 238, 0.88);
+  --shadow: 0 18px 40px rgba(60, 35, 10, 0.12);
 }
 
 /* ---------- Base ---------- */
@@ -123,10 +144,60 @@ button {
 }
 
 .nav.is-scrolled {
-  background: rgba(13, 11, 10, 0.82);
+  background: var(--nav-bg);
   backdrop-filter: blur(18px) saturate(1.4);
   -webkit-backdrop-filter: blur(18px) saturate(1.4);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-muted);
+  transition: color 0.25s, background 0.25s, border-color 0.25s;
+}
+
+.theme-toggle:hover {
+  color: var(--text);
+  border-color: var(--border-strong);
+  background: var(--accent-soft);
+}
+
+.project-card__hit {
+  display: block;
+}
+
+.project-card__title a:hover {
+  color: var(--accent-1);
+}
+
+.project-detail__cover {
+  width: 88px;
+  height: 88px;
+  flex-shrink: 0;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+}
+
+[data-theme="light"] .hero__float,
+[data-theme="light"] .hero__status,
+[data-theme="light"] .nav__menu {
+  background: rgba(255, 255, 255, 0.92);
+}
+
+[data-theme="light"] .orb--1,
+[data-theme="light"] .orb--2 {
+  opacity: 0.35;
+}
+
+[data-theme="light"] .section__eyebrow {
+  color: var(--accent-1);
 }
 
 .nav__inner {

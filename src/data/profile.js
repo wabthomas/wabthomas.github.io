@@ -7,11 +7,13 @@ export const CONTACT = {
   github: "https://github.com/wabthomas",
   linkedin: "https://linkedin.com/in/wabthomas",
   twitter: "https://x.com/thomaszawadi1",
-  facebook: "https://facebook.com/thomaszawadi1",
+  facebook: "https://facebook.com/thomaszawadi01",
   blog: "https://wab-infos.com",
+  cv: "/cv-thomas-zawadi.pdf",
 };
 
 export { TECH_STACK } from "./tech";
+export { PROJECTS } from "./projects";
 
 export const HERO_CHIPS = [
   { icon: "react", title: "React · Node", subKey: "hero.chip1" },
@@ -97,81 +99,6 @@ export const EXPERIENCE = [
     placeKey: "exp.e4.place",
     bulletsKey: ["exp.e4.b1", "exp.e4.b2"],
     tags: ["APIs", "PostgreSQL", "Consulting"],
-  },
-];
-
-export const PROJECTS = [
-  {
-    emoji: "📰",
-    cover: 1,
-    title: "Wab Infos",
-    status: "live",
-    descKey: "projects.p1d",
-    tags: ["Next.js", "React", "TypeScript", "CMS"],
-    links: [
-      { href: "https://wab-infos.com", labelKey: "projects.visit" },
-      { href: "https://github.com/wabthomas", labelKey: "projects.code", muted: true },
-    ],
-  },
-  {
-    emoji: "🛒",
-    cover: 2,
-    title: "Wab Market",
-    status: "live",
-    descKey: "projects.pMarket",
-    tags: ["React", "Node.js", "Capacitor", "Firebase"],
-    links: [
-      { href: "https://wabmarket.app", labelKey: "projects.visit" },
-    ],
-  },
-  {
-    emoji: "📦",
-    cover: 3,
-    title: "KivuColis",
-    status: "live",
-    descKey: "projects.pColis",
-    tags: ["React", "Node.js", "PostgreSQL", "Logistique"],
-    links: [
-      { href: "https://colis.wabmarket.com", labelKey: "projects.visit" },
-    ],
-  },
-  {
-    emoji: "🚕",
-    cover: 1,
-    title: "Zua Taxi",
-    status: "wip",
-    descKey: "projects.pTaxi",
-    tags: ["React Native", "Expo", "Node.js", "GCP"],
-    links: [],
-  },
-  {
-    emoji: "🏢",
-    cover: 2,
-    title: "Kiwanda / KRHISNA",
-    status: "live",
-    descKey: "projects.pKiwanda",
-    tags: ["Next.js", "NestJS", "Prisma", "GCP"],
-    links: [],
-  },
-  {
-    emoji: "👥",
-    cover: 3,
-    title: "ERP GRH",
-    status: "live",
-    descKey: "projects.pGrh",
-    tags: ["Next.js", "Prisma", "PostgreSQL", "RBAC"],
-    links: [],
-  },
-  {
-    emoji: "♿",
-    cover: 1,
-    title: "adiong",
-    status: "wip",
-    descKey: "projects.p2d",
-    tags: ["Impact", "Web"],
-    links: [
-      { href: "https://github.com/wabthomas/adiong", labelKey: "projects.code" },
-    ],
   },
 ];
 

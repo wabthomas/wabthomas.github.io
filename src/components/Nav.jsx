@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
+import { useTheme } from "../context/ThemeContext";
+import { IconMoon, IconSun } from "./Icons";
 
 const LINKS = [
   { id: "accueil", key: "nav.home" },
@@ -14,6 +16,7 @@ const LINKS = [
 
 export default function Nav({ scrolled, activeId }) {
   const { lang, setLang, t } = useLanguage();
+  const { isLight, toggleTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -103,6 +106,15 @@ export default function Nav({ scrolled, activeId }) {
                 </button>
               ))}
             </div>
+            <button
+              type="button"
+              className="theme-toggle"
+              onClick={toggleTheme}
+              aria-label={isLight ? "Mode sombre" : "Mode clair"}
+              title={isLight ? "Dark" : "Light"}
+            >
+              {isLight ? <IconMoon /> : <IconSun />}
+            </button>
             <button
               className={`nav__burger${menuOpen ? " is-open" : ""}`}
               aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}

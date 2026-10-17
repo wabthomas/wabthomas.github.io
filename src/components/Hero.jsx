@@ -105,6 +105,9 @@ export default function Hero() {
             }}>
               {t("hero.cta2")}
             </a>
+            <a href="/cv-thomas-zawadi.pdf" className="btn btn--ghost" download>
+              {t("contact.cv")}
+            </a>
           </div>
 
           <SocialLinks />
