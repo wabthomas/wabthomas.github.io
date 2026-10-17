@@ -37,8 +37,12 @@ export default function ProjectDetail() {
         </Link>
 
         <header className="tech-page__head">
-          <div className={`project-detail__cover project-card__cover--${project.cover}`}>
-            <span className="project-card__emoji">{project.emoji}</span>
+          <div className={`project-detail__cover project-card__cover--${project.cover}${project.image ? " project-detail__cover--photo" : ""}`}>
+            {project.image ? (
+              <img src={project.image} alt="" className="project-detail__img" />
+            ) : (
+              <span className="project-card__emoji">{project.emoji}</span>
+            )}
           </div>
           <div>
             <p className="section__eyebrow">

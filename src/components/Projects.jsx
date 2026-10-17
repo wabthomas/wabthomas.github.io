@@ -22,8 +22,18 @@ export default function Projects() {
             return (
               <Reveal as="article" className="project-card" key={p.slug}>
                 <Link to={`/project/${p.slug}`} className="project-card__hit">
-                  <div className={`project-card__cover project-card__cover--${p.cover}`}>
-                    <span className="project-card__emoji">{p.emoji}</span>
+                  <div className={`project-card__cover project-card__cover--${p.cover}${p.image ? " project-card__cover--photo" : ""}`}>
+                    {p.image ? (
+                      <img
+                        src={p.image}
+                        alt={p.title}
+                        className="project-card__img"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    ) : (
+                      <span className="project-card__emoji">{p.emoji}</span>
+                    )}
                   </div>
                 </Link>
                 <div className="project-card__body">
