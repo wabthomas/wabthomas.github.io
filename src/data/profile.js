@@ -1,7 +1,7 @@
 /** Profile & CV-derived content for Thomas Zawadi */
 
 export const CONTACT = {
-  email: "thomaszawadi@gmail.com",
+  email: "binwabthomas@gmail.com",
   phone: "+243 991 850 610",
   location: "Goma, RDC",
   github: "https://github.com/wabthomas",
