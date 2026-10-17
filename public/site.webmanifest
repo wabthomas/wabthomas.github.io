@@ -1,0 +1,28 @@
+{
+  "name": "Thomas Zawadi — Portfolio",
+  "short_name": "Thomas Zawadi",
+  "description": "Full Stack Engineer · React · Node · Capacitor · Goma, RDC",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d0b0a",
+  "theme_color": "#0d0b0a",
+  "lang": "fr",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
