@@ -1,19 +1,22 @@
 import { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
 
 const LINKS = [
-  { href: "#accueil", key: "nav.home" },
-  { href: "#apropos", key: "nav.about" },
-  { href: "#competences", key: "nav.skills" },
-  { href: "#projets", key: "nav.projects" },
-  { href: "#parcours", key: "nav.experience" },
-  { href: "#services", key: "nav.services" },
-  { href: "#contact", key: "nav.contact", cta: true },
+  { id: "accueil", key: "nav.home" },
+  { id: "apropos", key: "nav.about" },
+  { id: "competences", key: "nav.skills" },
+  { id: "projets", key: "nav.projects" },
+  { id: "parcours", key: "nav.experience" },
+  { id: "services", key: "nav.services" },
+  { id: "contact", key: "nav.contact", cta: true },
 ];
 
 export default function Nav({ scrolled, activeId }) {
   const { lang, setLang, t } = useLanguage();
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const onKey = (e) => {
@@ -30,6 +33,18 @@ export default function Nav({ scrolled, activeId }) {
 
   const closeMenu = () => setMenuOpen(false);
 
+  const goSection = (id) => {
+    closeMenu();
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => {
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+      }, 80);
+    } else {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <>
       <div
@@ -40,12 +55,20 @@ export default function Nav({ scrolled, activeId }) {
 
       <header className={`nav${scrolled ? " is-scrolled" : ""}`} id="nav">
         <div className="container nav__inner">
-          <a href="#accueil" className="nav__logo" aria-label="Thomas Zawadi — accueil" onClick={closeMenu}>
+          <Link
+            to="/"
+            className="nav__logo"
+            aria-label="Thomas Zawadi — accueil"
+            onClick={() => {
+              closeMenu();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+          >
             <img src="/portrait.png" alt="" className="nav__avatar" width="36" height="36" />
             <span className="nav__logo-name">
               Thomas<span className="accent">.</span>
             </span>
-          </a>
+          </Link>
 
           <nav
             className={`nav__menu${menuOpen ? " is-open" : ""}`}
@@ -53,16 +76,16 @@ export default function Nav({ scrolled, activeId }) {
             aria-label="Navigation principale"
           >
             {LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
+              <button
+                key={link.id}
+                type="button"
                 className={`nav__link${link.cta ? " nav__link--cta" : ""}${
-                  activeId === link.href.slice(1) ? " is-active" : ""
+                  activeId === link.id ? " is-active" : ""
                 }`}
-                onClick={closeMenu}
+                onClick={() => goSection(link.id)}
               >
                 {t(link.key)}
-              </a>
+              </button>
             ))}
           </nav>
 
@@ -82,7 +105,6 @@ export default function Nav({ scrolled, activeId }) {
             </div>
             <button
               className={`nav__burger${menuOpen ? " is-open" : ""}`}
-              id="navBurger"
               aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"}
               aria-expanded={menuOpen}
               aria-controls="navMenu"

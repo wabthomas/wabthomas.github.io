@@ -1,7 +1,10 @@
+import { Link } from "react-router-dom";
 import { SKILL_GROUPS } from "../data/profile";
+import { techSlugFromName, getTech } from "../data/tech";
 import { useLanguage } from "../context/LanguageContext";
 import Reveal from "./Reveal";
 import { IconCloud, IconCode, IconMobile, IconPen, IconServer, IconUsers } from "./Icons";
+import { TechIcon } from "./TechIcons";
 
 const ICONS = {
   code: IconCode,
@@ -11,6 +14,22 @@ const ICONS = {
   pen: IconPen,
   users: IconUsers,
 };
+
+function SkillTag({ tag }) {
+  const slug = techSlugFromName(tag);
+  const tech = getTech(slug);
+  if (!tech) {
+    return <span className="tag">{tag}</span>;
+  }
+  return (
+    <Link to={`/tech/${tech.slug}`} className="tag tag--link">
+      <span className="tag__icon" style={{ color: tech.color }}>
+        <TechIcon name={tech.icon} size={14} />
+      </span>
+      {tech.name}
+    </Link>
+  );
+}
 
 export default function Skills() {
   const { t } = useLanguage();
@@ -36,7 +55,7 @@ export default function Skills() {
                 <p>{t(g.descKey)}</p>
                 <div className="tags">
                   {g.tags.map((tag) => (
-                    <span className="tag" key={tag}>{tag}</span>
+                    <SkillTag key={tag} tag={tag} />
                   ))}
                 </div>
               </Reveal>

@@ -6,24 +6,12 @@ export const CONTACT = {
   location: "Goma, RDC",
   github: "https://github.com/wabthomas",
   linkedin: "https://linkedin.com/in/wabthomas",
-  twitter: "https://twitter.com/thomaszawadi01",
+  twitter: "https://x.com/thomaszawadi1",
+  facebook: "https://facebook.com/thomaszawadi01",
   blog: "https://wab-infos.com",
 };
 
-export const TECH_STACK = [
-  "React",
-  "Next.js",
-  "Node.js",
-  "TypeScript",
-  "Capacitor",
-  "React Native",
-  "NestJS",
-  "PostgreSQL",
-  "Prisma",
-  "Docker",
-  "Tailwind CSS",
-  "Firebase",
-];
+export { TECH_STACK } from "./tech";
 
 export const HERO_CHIPS = [
   { icon: "react", title: "React · Node", subKey: "hero.chip1" },
@@ -137,8 +125,19 @@ export const PROJECTS = [
     ],
   },
   {
-    emoji: "🚕",
+    emoji: "📦",
     cover: 3,
+    title: "KivuColis",
+    status: "live",
+    descKey: "projects.pColis",
+    tags: ["React", "Node.js", "PostgreSQL", "Logistique"],
+    links: [
+      { href: "https://colis.wabmarket.com", labelKey: "projects.visit" },
+    ],
+  },
+  {
+    emoji: "🚕",
+    cover: 1,
     title: "Zua Taxi",
     status: "wip",
     descKey: "projects.pTaxi",
@@ -147,7 +146,7 @@ export const PROJECTS = [
   },
   {
     emoji: "🏢",
-    cover: 1,
+    cover: 2,
     title: "Kiwanda / KRHISNA",
     status: "live",
     descKey: "projects.pKiwanda",
@@ -156,7 +155,7 @@ export const PROJECTS = [
   },
   {
     emoji: "👥",
-    cover: 2,
+    cover: 3,
     title: "ERP GRH",
     status: "live",
     descKey: "projects.pGrh",
@@ -165,7 +164,7 @@ export const PROJECTS = [
   },
   {
     emoji: "♿",
-    cover: 3,
+    cover: 1,
     title: "adiong",
     status: "wip",
     descKey: "projects.p2d",

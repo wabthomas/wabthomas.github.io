@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { CONTACT_EMAIL } from "../i18n/translations";
+import { CONTACT } from "../data/profile";
 import { useLanguage } from "../context/LanguageContext";
 import Reveal from "./Reveal";
-import { IconBlog, IconGithub, IconLinkedIn, IconPin, IconSend, IconX } from "./Icons";
+import { IconBlog, IconFacebook, IconGithub, IconLinkedIn, IconPin, IconSend, IconX } from "./Icons";
 
 export default function Contact({ showToast }) {
   const { t } = useLanguage();
@@ -55,6 +56,15 @@ export default function Contact({ showToast }) {
     setInvalid({});
   };
 
+  const channels = [
+    { href: `mailto:${CONTACT.email}`, label: "Email", value: CONTACT.email, Icon: IconSend },
+    { href: CONTACT.linkedin, label: "LinkedIn", value: "@wabthomas", Icon: IconLinkedIn },
+    { href: CONTACT.github, label: "GitHub", value: "@wabthomas", Icon: IconGithub },
+    { href: CONTACT.twitter, label: "X / Twitter", value: "@thomaszawadi1", Icon: IconX },
+    { href: CONTACT.facebook, label: "Facebook", value: "@thomaszawadi01", Icon: IconFacebook },
+    { href: CONTACT.blog, labelKey: "contact.blog", value: "wab-infos.com", Icon: IconBlog },
+  ];
+
   return (
     <section className="section" id="contact">
       <div className="container">
@@ -67,41 +77,23 @@ export default function Contact({ showToast }) {
         <div className="contact__grid">
           <Reveal className="contact__info">
             <div className="contact__channels">
-              <a href="mailto:thomaszawadi@gmail.com" className="channel">
-                <div className="channel__icon" aria-hidden="true"><IconSend size={18} /></div>
-                <div>
-                  <strong>Email</strong>
-                  <span>thomaszawadi@gmail.com</span>
-                </div>
-              </a>
-              <a href="https://linkedin.com/in/wabthomas" target="_blank" rel="noopener noreferrer" className="channel">
-                <div className="channel__icon" aria-hidden="true"><IconLinkedIn /></div>
-                <div>
-                  <strong>LinkedIn</strong>
-                  <span>@wabthomas</span>
-                </div>
-              </a>
-              <a href="https://github.com/wabthomas" target="_blank" rel="noopener noreferrer" className="channel">
-                <div className="channel__icon" aria-hidden="true"><IconGithub /></div>
-                <div>
-                  <strong>GitHub</strong>
-                  <span>@wabthomas</span>
-                </div>
-              </a>
-              <a href="https://twitter.com/thomaszawadi01" target="_blank" rel="noopener noreferrer" className="channel">
-                <div className="channel__icon" aria-hidden="true"><IconX /></div>
-                <div>
-                  <strong>X / Twitter</strong>
-                  <span>@thomaszawadi01</span>
-                </div>
-              </a>
-              <a href="https://wab-infos.com" target="_blank" rel="noopener noreferrer" className="channel">
-                <div className="channel__icon" aria-hidden="true"><IconBlog /></div>
-                <div>
-                  <strong>{t("contact.blog")}</strong>
-                  <span>wab-infos.com</span>
-                </div>
-              </a>
+              {channels.map((ch) => (
+                <a
+                  key={ch.href}
+                  href={ch.href}
+                  target={ch.href.startsWith("mailto:") ? undefined : "_blank"}
+                  rel={ch.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                  className="channel"
+                >
+                  <div className="channel__icon" aria-hidden="true">
+                    <ch.Icon size={18} />
+                  </div>
+                  <div>
+                    <strong>{ch.labelKey ? t(ch.labelKey) : ch.label}</strong>
+                    <span>{ch.value}</span>
+                  </div>
+                </a>
+              ))}
               <div className="channel channel--static">
                 <div className="channel__icon" aria-hidden="true"><IconPin /></div>
                 <div>
@@ -115,7 +107,6 @@ export default function Contact({ showToast }) {
           <Reveal
             as="form"
             className="contact__form"
-            id="contactForm"
             noValidate
             onSubmit={onSubmit}
           >

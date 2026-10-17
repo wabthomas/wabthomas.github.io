@@ -182,6 +182,11 @@ button {
   font-weight: 500;
   color: var(--text-muted);
   transition: color 0.25s, background 0.25s;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
 }
 
 .nav__link:hover {
@@ -615,6 +620,9 @@ button {
 }
 
 .hero__tech-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   padding: 8px 14px;
   border-radius: 999px;
   border: 1px solid var(--border);
@@ -622,6 +630,117 @@ button {
   font-size: 0.88rem;
   font-weight: 600;
   color: var(--text-muted);
+}
+
+.hero__tech-pill--link {
+  transition: transform 0.25s var(--ease), border-color 0.25s, color 0.25s, background 0.25s;
+}
+
+.hero__tech-pill--link:hover {
+  transform: translateY(-2px);
+  color: var(--text);
+  border-color: color-mix(in srgb, var(--tech-color, var(--accent-1)) 55%, transparent);
+  background: color-mix(in srgb, var(--tech-color, var(--accent-1)) 12%, transparent);
+}
+
+.hero__tech-icon {
+  display: grid;
+  place-items: center;
+}
+
+.marquee__tech {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: inherit;
+  transition: color 0.25s;
+}
+
+.marquee__tech:hover {
+  color: var(--text);
+}
+
+.marquee__tech-icon {
+  display: grid;
+  place-items: center;
+}
+
+/* ---------- Tech detail page ---------- */
+.tech-page {
+  padding-top: calc(var(--nav-h) + 48px);
+  min-height: 70vh;
+}
+
+.tech-page__inner {
+  max-width: 760px;
+}
+
+.tech-page__back {
+  display: inline-block;
+  margin-bottom: 28px;
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.tech-page__back:hover {
+  color: var(--accent-1);
+}
+
+.tech-page__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 22px;
+  margin-bottom: 28px;
+}
+
+.tech-page__icon {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-strong);
+}
+
+.tech-page__title {
+  font-family: var(--font-head);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.tech-page__tagline {
+  margin-top: 8px;
+  color: var(--text-muted);
+  font-size: 1.05rem;
+}
+
+.tech-page__body {
+  color: var(--text-muted);
+  font-size: 1.08rem;
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+
+.tech-page__block h2 {
+  font-family: var(--font-head);
+  font-size: 1.1rem;
+  margin-bottom: 14px;
+}
+
+.tech-page__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 36px;
+}
+
+.tech-page__missing {
+  color: var(--text-muted);
+  margin-bottom: 20px;
 }
 
 /* ---------- Marquee ---------- */
@@ -772,6 +891,18 @@ button {
   border-color: rgba(255, 106, 0, 0.5);
   color: var(--text);
   transform: translateY(-2px);
+}
+
+.tag--link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.tag__icon {
+  display: grid;
+  place-items: center;
 }
 
 .about__cards {

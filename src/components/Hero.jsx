@@ -1,6 +1,10 @@
-import { HERO_CHIPS, TECH_STACK } from "../data/profile";
+import { Link } from "react-router-dom";
+import { HERO_CHIPS } from "../data/profile";
+import { TECHNOLOGIES } from "../data/tech";
 import { useLanguage } from "../context/LanguageContext";
-import { IconArrow, IconBlog, IconCloud, IconGithub, IconMobile, IconReact, IconX } from "./Icons";
+import SocialLinks from "./SocialLinks";
+import { TechIcon } from "./TechIcons";
+import { IconArrow, IconCloud, IconMobile, IconReact } from "./Icons";
 
 const CHIP_ICONS = {
   react: IconReact,
@@ -10,6 +14,7 @@ const CHIP_ICONS = {
 
 export default function Hero() {
   const { t } = useLanguage();
+  const techs = Object.values(TECHNOLOGIES);
 
   return (
     <section className="hero" id="accueil">
@@ -87,24 +92,22 @@ export default function Hero() {
           <p className="hero__sub">{t("hero.sub")}</p>
 
           <div className="hero__cta">
-            <a href="#projets" className="btn btn--primary">
+            <a href="#projets" className="btn btn--primary" onClick={(e) => {
+              e.preventDefault();
+              document.getElementById("projets")?.scrollIntoView({ behavior: "smooth" });
+            }}>
               <span>{t("hero.cta1")}</span>
               <IconArrow />
             </a>
-            <a href="#contact" className="btn btn--ghost">{t("hero.cta2")}</a>
+            <a href="#contact" className="btn btn--ghost" onClick={(e) => {
+              e.preventDefault();
+              document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+            }}>
+              {t("hero.cta2")}
+            </a>
           </div>
 
-          <div className="hero__socials">
-            <a href="https://github.com/wabthomas" target="_blank" rel="noopener noreferrer" className="social-btn" aria-label="GitHub">
-              <IconGithub />
-            </a>
-            <a href="https://twitter.com/thomaszawadi01" target="_blank" rel="noopener noreferrer" className="social-btn" aria-label="X / Twitter">
-              <IconX />
-            </a>
-            <a href="https://wab-infos.com" target="_blank" rel="noopener noreferrer" className="social-btn" aria-label="Blog wab-infos.com">
-              <IconBlog />
-            </a>
-          </div>
+          <SocialLinks />
         </div>
       </div>
 
@@ -112,8 +115,18 @@ export default function Hero() {
         <div className="container">
           <p className="hero__tech-label">{t("hero.techLabel")}</p>
           <div className="hero__tech-row">
-            {TECH_STACK.map((tech) => (
-              <span key={tech} className="hero__tech-pill">{tech}</span>
+            {techs.map((tech) => (
+              <Link
+                key={tech.slug}
+                to={`/tech/${tech.slug}`}
+                className="hero__tech-pill hero__tech-pill--link"
+                style={{ "--tech-color": tech.color }}
+              >
+                <span className="hero__tech-icon" style={{ color: tech.color }}>
+                  <TechIcon name={tech.icon} size={18} />
+                </span>
+                <span>{tech.name}</span>
+              </Link>
             ))}
           </div>
         </div>

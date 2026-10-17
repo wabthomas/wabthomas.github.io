@@ -176,3 +176,11 @@ export function IconLinkedIn({ size = 20 }) {
     </svg>
   );
 }
+
+export function IconFacebook({ size = 20 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M14 8.2h2.4V4.8H14c-2.5 0-4.2 1.6-4.2 4.3V11H7.2v3.4h2.6V23h3.5v-8.6h2.7l.5-3.4h-3.2V9.4c0-.8.2-1.2 1.2-1.2z" />
+    </svg>
+  );
+}

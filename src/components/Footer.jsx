@@ -1,5 +1,6 @@
+import { Link } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
-import { IconBlog, IconGithub, IconX } from "./Icons";
+import SocialLinks from "./SocialLinks";
 
 export default function Footer() {
   const { t } = useLanguage();
@@ -8,27 +9,17 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="container footer__inner">
-        <a href="#accueil" className="nav__logo">
+        <Link to="/" className="nav__logo">
           <img src="/portrait.png" alt="" className="nav__avatar" width="36" height="36" />
           <span className="nav__logo-name">
             Thomas<span className="accent">.</span>
           </span>
-        </a>
+        </Link>
         <p className="footer__copy">
-          © {year} Thomas Zawadi · WabCompany LTD · {t("footer.made")}{" "}
+          © {year} Thomas Zawadi · WAB · {t("footer.made")}{" "}
           <span className="heart">❤️</span> {t("footer.in")}
         </p>
-        <div className="footer__socials">
-          <a href="https://github.com/wabthomas" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-            <IconGithub size={18} />
-          </a>
-          <a href="https://twitter.com/thomaszawadi01" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter">
-            <IconX size={16} />
-          </a>
-          <a href="https://wab-infos.com" target="_blank" rel="noopener noreferrer" aria-label="Blog">
-            <IconBlog size={18} />
-          </a>
-        </div>
+        <SocialLinks className="footer__socials" btnClass="" />
       </div>
     </footer>
   );

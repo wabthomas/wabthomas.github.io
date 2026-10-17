@@ -1,24 +1,24 @@
 import { useCallback, useEffect, useState } from "react";
+import { HashRouter, Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { LanguageProvider } from "./context/LanguageContext";
 import Nav from "./components/Nav";
-import Hero from "./components/Hero";
-import Marquee from "./components/Marquee";
-import Stats from "./components/Stats";
-import About from "./components/About";
-import Skills from "./components/Skills";
-import Projects from "./components/Projects";
-import Experience from "./components/Experience";
-import Services from "./components/Services";
-import Blog from "./components/Blog";
-import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import TechDetail from "./components/TechDetail";
+import Home from "./pages/Home";
 import { IconUp } from "./components/Icons";
 
-export default function App() {
-  const [scrolled, setScrolled] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [showBackTop, setShowBackTop] = useState(false);
-  const [activeId, setActiveId] = useState("accueil");
-  const [toast, setToast] = useState({ visible: false, message: "" });
+function ScrollManager({ showBackTop, setShowBackTop, setScrolled, setProgress, setActiveId }) {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === "/" && location.hash) {
+      const id = location.hash.replace("#", "");
+      const el = document.getElementById(id);
+      if (el) setTimeout(() => el.scrollIntoView({ behavior: "smooth" }), 50);
+    } else if (location.pathname.startsWith("/tech/")) {
+      window.scrollTo({ top: 0, behavior: "instant" in window ? "instant" : "auto" });
+    }
+  }, [location]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -38,7 +38,19 @@ export default function App() {
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [setActiveId, setProgress, setScrolled, setShowBackTop, location.pathname]);
+
+  return null;
+}
+
+function Shell() {
+  const [scrolled, setScrolled] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [showBackTop, setShowBackTop] = useState(false);
+  const [activeId, setActiveId] = useState("accueil");
+  const [toast, setToast] = useState({ visible: false, message: "" });
+  const location = useLocation();
+  const isTechPage = location.pathname.startsWith("/tech/");
 
   const showToast = useCallback((message) => {
     setToast({ visible: true, message });
@@ -48,23 +60,26 @@ export default function App() {
 
   return (
     <>
+      <ScrollManager
+        showBackTop={showBackTop}
+        setShowBackTop={setShowBackTop}
+        setScrolled={setScrolled}
+        setProgress={setProgress}
+        setActiveId={setActiveId}
+      />
+
       <div className="scroll-progress" aria-hidden="true">
         <span id="scrollBar" style={{ width: `${progress}%` }} />
       </div>
 
-      <Nav scrolled={scrolled} activeId={activeId} />
+      <Nav scrolled={scrolled} activeId={isTechPage ? "" : activeId} />
 
       <main>
-        <Hero />
-        <Marquee />
-        <Stats />
-        <About />
-        <Skills />
-        <Projects />
-        <Experience />
-        <Services />
-        <Blog />
-        <Contact showToast={showToast} />
+        <Routes>
+          <Route path="/" element={<Home showToast={showToast} />} />
+          <Route path="/tech/:slug" element={<TechDetail />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
       </main>
 
       <Footer />
@@ -72,7 +87,6 @@ export default function App() {
       <button
         type="button"
         className={`back-top${showBackTop ? " is-visible" : ""}`}
-        id="backTop"
         aria-label="Retour en haut"
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       >
@@ -81,12 +95,21 @@ export default function App() {
 
       <div
         className={`toast${toast.visible ? " is-visible" : ""}`}
-        id="toast"
         role="status"
         aria-live="polite"
       >
         {toast.message}
       </div>
     </>
+  );
+}
+
+export default function App() {
+  return (
+    <LanguageProvider>
+      <HashRouter>
+        <Shell />
+      </HashRouter>
+    </LanguageProvider>
   );
 }

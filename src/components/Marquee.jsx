@@ -1,12 +1,21 @@
 import { Fragment } from "react";
-import { TECH_STACK } from "../data/profile";
+import { Link } from "react-router-dom";
+import { TECHNOLOGIES } from "../data/tech";
+import { TechIcon } from "./TechIcons";
+
+const ITEMS = Object.values(TECHNOLOGIES);
 
 function Group() {
   return (
     <div className="marquee__group">
-      {TECH_STACK.map((item) => (
-        <Fragment key={item}>
-          <span>{item}</span>
+      {ITEMS.map((tech) => (
+        <Fragment key={tech.slug}>
+          <Link to={`/tech/${tech.slug}`} className="marquee__tech">
+            <span className="marquee__tech-icon" style={{ color: tech.color }}>
+              <TechIcon name={tech.icon} size={16} />
+            </span>
+            {tech.name}
+          </Link>
           <i>✦</i>
         </Fragment>
       ))}

@@ -75,6 +75,8 @@ export const translations = {
       "Pilotage technique d’une plateforme web avec une équipe de 15 personnes — jalons, architecture, livraison.",
     "projects.pGrh":
       "Application RH : employés, rôles, permissions, workflows et reporting.",
+    "projects.pColis":
+      "Plateforme logistique KivuColis : envoi et suivi de colis / transferts en Afrique de l’Est — suivi, points relais et opérations terrain.",
     "projects.visit": "Visiter",
     "projects.code": "Code source",
 
@@ -249,6 +251,8 @@ export const translations = {
       "Technical lead on a web platform with a 15-person team — milestones, architecture, delivery.",
     "projects.pGrh":
       "HR platform: employees, roles, permissions, workflows and reporting.",
+    "projects.pColis":
+      "KivuColis logistics platform: parcel shipping and tracking across East Africa — tracking, pickup points and field operations.",
     "projects.visit": "Visit",
     "projects.code": "Source code",
 
