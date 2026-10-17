@@ -44,6 +44,7 @@ export default function Contact({ showToast }) {
         body: JSON.stringify({
           name: form.name.trim(),
           email: form.email.trim(),
+          _replyto: form.email.trim(),
           subject: form.subject.trim() || `Portfolio — ${form.name.trim()}`,
           message: form.message.trim(),
           _template: "table",
@@ -51,7 +52,27 @@ export default function Contact({ showToast }) {
         }),
       });
 
-      if (!res.ok) throw new Error("send failed");
+      const data = await res.json().catch(() => ({}));
+      const msg = String(data.message || data.error || "").toLowerCase();
+      const needsConfirm =
+        msg.includes("confirm") ||
+        msg.includes("activate") ||
+        msg.includes("activation") ||
+        msg.includes("vérif") ||
+        data.success === false ||
+        data.success === "false";
+
+      if (needsConfirm) {
+        showToast(t("contact.toastConfirm"));
+        setForm({ name: "", email: "", subject: "", message: "" });
+        setInvalid({});
+        return;
+      }
+
+      if (!res.ok || data.success === false || data.success === "false") {
+        throw new Error("send failed");
+      }
+
       showToast(t("contact.toastSent"));
       setForm({ name: "", email: "", subject: "", message: "" });
       setInvalid({});
@@ -81,7 +102,7 @@ export default function Contact({ showToast }) {
     { href: CONTACT.linkedin, label: "LinkedIn", value: "@wabthomas", Icon: IconLinkedIn },
     { href: CONTACT.github, label: "GitHub", value: "@wabthomas", Icon: IconGithub },
     { href: CONTACT.twitter, label: "X / Twitter", value: "@thomaszawadi1", Icon: IconX },
-    { href: CONTACT.facebook, label: "Facebook", value: "@thomaszawadi01", Icon: IconFacebook },
+    { href: CONTACT.facebook, label: "Facebook", value: "@thomaszawadi1", Icon: IconFacebook },
     { href: CONTACT.blog, labelKey: "contact.blog", value: "wab-infos.com", Icon: IconBlog },
   ];
 

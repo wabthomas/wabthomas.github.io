@@ -170,9 +170,11 @@ export const translations = {
     "contact.send": "Envoyer le message",
     "contact.sending": "Envoi en cours…",
     "contact.note":
-      "Le message m’est envoyé directement par e-mail. Vous pouvez aussi me joindre via les canaux ci-contre.",
+      "Le message m’est envoyé directement par e-mail (FormSubmit). Au premier envoi, confirmez le lien reçu sur mon adresse. Vous pouvez aussi me joindre via les canaux ci-contre.",
     "contact.toastOk": "Message copié ! Envoyez-le-moi via e-mail ou LinkedIn.",
     "contact.toastSent": "Message envoyé — je vous réponds rapidement.",
+    "contact.toastConfirm":
+      "Activez FormSubmit : ouvrez le mail de confirmation envoyé à thomaszawadi@gmail.com, puis renvoyez.",
     "contact.toastErr": "Merci de remplir tous les champs obligatoires.",
     "contact.cv": "Télécharger mon CV (PDF)",
 
@@ -350,9 +352,11 @@ export const translations = {
     "contact.send": "Send the message",
     "contact.sending": "Sending…",
     "contact.note":
-      "Your message is sent to me by email. You can also reach me via the channels on the left.",
+      "Your message is emailed to me via FormSubmit. On the first send, confirm the link sent to my inbox. You can also reach me via the channels on the left.",
     "contact.toastOk": "Message copied! Send it via email or LinkedIn.",
     "contact.toastSent": "Message sent — I'll get back to you soon.",
+    "contact.toastConfirm":
+      "Activate FormSubmit: open the confirmation email sent to thomaszawadi@gmail.com, then resend.",
     "contact.toastErr": "Please fill in all required fields.",
     "contact.cv": "Download my CV (PDF)",
 

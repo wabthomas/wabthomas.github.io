@@ -40,7 +40,7 @@ export const PROJECTS = [
     slug: "wab-market",
     emoji: "🛒",
     cover: 2,
-    image: "/projects/wab-market.png",
+    image: "/projects/wab-market.jpg",
     title: "Wab Market",
     status: "live",
     tags: ["React", "Node.js", "Capacitor", "Firebase"],
@@ -76,30 +76,62 @@ export const PROJECTS = [
     title: "KivuColis",
     status: "live",
     tags: ["React", "Node.js", "PostgreSQL", "Logistique"],
-    links: [{ href: "https://colis.wabmarket.com", labelKey: "projects.visit" }],
+    links: [{ href: "https://colis.wabmarket.app", labelKey: "projects.visit" }],
     fr: {
       summary:
         "Plateforme logistique pour envois et suivi de colis / transferts en Afrique de l’Est.",
-      body: "KivuColis (colis.wabmarket.com) couvre la logistique et les transferts en Afrique de l’Est : création d’envois, suivi de colis, points relais et opérations terrain. Conçu pour des flux réels entre villes — Goma et la région — avec une interface web claire pour clients et opérateurs.",
+      body: "KivuColis (colis.wabmarket.app) couvre la logistique et les transferts en Afrique de l’Est : création d’envois, suivi de colis, points relais et opérations terrain. Conçu pour des flux réels entre villes — Goma et la région — avec une interface web claire pour clients et opérateurs.",
       highlights: [
         "Création & suivi d’envois",
         "Points relais / opérateurs",
         "Transferts Afrique de l’Est",
         "Stack React + Node + PostgreSQL",
       ],
-      urlNote: "https://colis.wabmarket.com",
+      urlNote: "https://colis.wabmarket.app",
     },
     en: {
       summary:
         "Logistics platform for parcel shipping and tracking across East Africa.",
-      body: "KivuColis (colis.wabmarket.com) covers logistics and transfers in East Africa: shipment creation, parcel tracking, pickup points and field operations. Built for real city-to-city flows — Goma and the region — with a clear web UI for customers and operators.",
+      body: "KivuColis (colis.wabmarket.app) covers logistics and transfers in East Africa: shipment creation, parcel tracking, pickup points and field operations. Built for real city-to-city flows — Goma and the region — with a clear web UI for customers and operators.",
       highlights: [
         "Shipment creation & tracking",
         "Pickup points / operators",
         "East Africa transfers",
         "React + Node + PostgreSQL stack",
       ],
-      urlNote: "https://colis.wabmarket.com",
+      urlNote: "https://colis.wabmarket.app",
+    },
+  },
+  {
+    slug: "kivu-business-car",
+    emoji: "🚗",
+    cover: 2,
+    image: "/projects/kivu-business-car.jpg",
+    title: "Kivu Business Car",
+    status: "live",
+    tags: ["Web", "E-commerce", "Automobile"],
+    links: [{ href: "https://kivubusinesscar.com", labelKey: "projects.visit" }],
+    fr: {
+      summary:
+        "Site de vente, location et importation de véhicules en RDC.",
+      body: "Kivu Business Car est une plateforme automobile que j’ai conçue : vitrine pour la vente, la location et l’importation de véhicules en RDC, avec une expérience web claire pour présenter l’offre et convertir les demandes clients.",
+      highlights: [
+        "Vente & location de véhicules",
+        "Importation automobile",
+        "Vitrine web conversion",
+        "Présence digitale RDC",
+      ],
+    },
+    en: {
+      summary:
+        "Car sales, rental and import website for the DRC.",
+      body: "Kivu Business Car is an automotive platform I designed: a showcase for vehicle sales, rental and import in the DRC, with a clear web experience to present inventory and convert customer inquiries.",
+      highlights: [
+        "Vehicle sales & rental",
+        "Automotive import",
+        "Conversion-focused web showcase",
+        "DRC digital presence",
+      ],
     },
   },
   {
