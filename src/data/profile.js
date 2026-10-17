@@ -7,7 +7,7 @@ export const CONTACT = {
   github: "https://github.com/wabthomas",
   linkedin: "https://linkedin.com/in/wabthomas",
   twitter: "https://x.com/thomaszawadi1",
-  facebook: "https://facebook.com/thomaszawadi01",
+  facebook: "https://facebook.com/thomaszawadi1",
   blog: "https://wab-infos.com",
 };
 
